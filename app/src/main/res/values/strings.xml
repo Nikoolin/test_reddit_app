@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Reddit Simple Client</string>
+    <string name="use_coroutines">Use coroutines</string>
+    <string name="use_rx_java">Use RxJava</string>
+    <string name="header">Top 50 posts from Reddit</string>
+    <string name="author_name">Author name : %s</string>
+    <string name="subreddit">Subreddit : %s</string>
+</resources>

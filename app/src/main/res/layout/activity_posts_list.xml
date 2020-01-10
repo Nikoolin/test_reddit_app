@@ -32,17 +32,16 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:title="@string/header"
-                app:titleTextColor="@color/white" />
+                app:titleTextColor="@android:color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/posts_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:paddingStart="@dimen/card_side_margin"
-                android:paddingTop="@dimen/header_margin"
-                android:paddingEnd="@dimen/card_side_margin"
-                android:adapter="@{postAdapter}"
+                android:scrollbars="vertical"
+                android:padding="@dimen/margin_small"
+                app:adapter="@{postAdapter}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:context="com.orange.nikoolin.reddit.ui.posts.PostsListActivity"
                 tools:listitem="@layout/posts_list_item" />

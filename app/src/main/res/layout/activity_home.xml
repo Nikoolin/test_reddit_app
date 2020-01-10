@@ -20,13 +20,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="6dp"
+            android:layout_margin="@dimen/margin_small"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/useCoroutinesButton"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/zero_dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="@string/use_coroutines"
@@ -35,7 +35,7 @@
             <Button
                 android:id="@+id/useRxJavaButton"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/zero_dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="@string/use_rx_java"

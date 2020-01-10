@@ -11,14 +11,14 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         useCoroutinesButton.setOnClickListener {
-            show(PostsListActivity.ThreadHandlerType.COROUTINES)
+            show(PostsListActivity.ThreadManagerType.COROUTINES)
         }
         useRxJavaButton.setOnClickListener {
-            show(PostsListActivity.ThreadHandlerType.RXJAVA)
+            show(PostsListActivity.ThreadManagerType.RXJAVA)
         }
     }
 
-    private fun show(type: PostsListActivity.ThreadHandlerType) {
+    private fun show(type: PostsListActivity.ThreadManagerType) {
         val intent = PostsListActivity.init(this, type)
         startActivity(intent)
     }

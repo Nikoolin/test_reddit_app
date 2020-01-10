@@ -21,6 +21,7 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppComp
         super.onCreate(savedInstanceState)
         // Bind the view and bind the viewModel to layout
         bindContentView(layoutId())
+        initToolbar()
     }
 
     private fun bindContentView(layoutId: Int) {
@@ -33,5 +34,7 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppComp
 
     @LayoutRes
     protected abstract fun layoutId(): Int
+
+    abstract fun initToolbar()
 
 }

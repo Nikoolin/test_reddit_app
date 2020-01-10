@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.orange.nikoolin.reddit.BR
 import com.orange.nikoolin.reddit.R
 import com.orange.nikoolin.reddit.databinding.ActivityPostsListBinding
 import com.orange.nikoolin.reddit.ui.base.BaseActivity
@@ -14,7 +15,7 @@ class PostsListActivity : BaseActivity<ActivityPostsListBinding, PostsListViewMo
 
     companion object {
         const val KEY_THREAD_HANDLER_TYPE = "thread_handler_type"
-        fun init(context: Context, type: ThreadHandlerType): Intent {
+        fun init(context: Context, type: ThreadManagerType): Intent {
             val intent = Intent(context, PostsListActivity::class.java)
             intent.putExtra(KEY_THREAD_HANDLER_TYPE, type.ordinal)
             return intent
@@ -30,35 +31,36 @@ class PostsListActivity : BaseActivity<ActivityPostsListBinding, PostsListViewMo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.lifecycleOwner = this
-        initToolbar()
 
-        val threadHandlerTypeParam = intent.getIntExtra(KEY_THREAD_HANDLER_TYPE, 0)
-        when (ThreadHandlerType.values()[threadHandlerTypeParam]) {
-            ThreadHandlerType.COROUTINES -> {
+        when (ThreadManagerType.values()[intent.getIntExtra(KEY_THREAD_HANDLER_TYPE, 0)]) {
+            ThreadManagerType.COROUTINES -> {
                 viewModel.loadDataCoroutine()
             }
-            ThreadHandlerType.RXJAVA -> {
+            ThreadManagerType.RXJAVA -> {
                 viewModel.loadDataRx()
             }
         }
+        setupRecyclerView()
+    }
 
-        val adapter = PostAdapter(Glide.with(this))
-        binding.postsList.adapter = adapter
+    private fun setupRecyclerView() {
+        binding.setVariable(BR.postAdapter, PostAdapter())
 
         viewModel.dataPosts.observe(this, Observer { it ->
             it?.let {
-                adapter.submitList(it)
+                binding.postAdapter?.submitList(it)
             }
         })
     }
 
-    private fun initToolbar() {
+    override fun initToolbar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
     }
-    enum class ThreadHandlerType {
+
+    enum class ThreadManagerType {
         COROUTINES,
         RXJAVA
     }

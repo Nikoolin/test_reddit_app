@@ -6,15 +6,18 @@ import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.orange.nikoolin.reddit.R
 import com.orange.nikoolin.reddit.data.models.Post
 import com.orange.nikoolin.reddit.databinding.PostsListItemBinding
 
 class PostsViewHolder(
-        private val binding: PostsListItemBinding,
-        private val glide: RequestManager
+        private val binding: PostsListItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
+
+    private val glide: RequestManager = Glide.with(binding.root.context)
+
     init {
         binding.setClickListener {
             binding.post?.let { post ->

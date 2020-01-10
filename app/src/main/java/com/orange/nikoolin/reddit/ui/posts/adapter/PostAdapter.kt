@@ -13,11 +13,11 @@ import com.orange.nikoolin.reddit.databinding.PostsListItemBinding
 /**
  * Adapter for the [RecyclerView] in [PostsListActivity].
  */
-class PostAdapter(private val glide: RequestManager) : ListAdapter<Post, RecyclerView.ViewHolder>(PostDiffCallback()) {
+class PostAdapter() : ListAdapter<Post, RecyclerView.ViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return PostsViewHolder(PostsListItemBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false), glide)
+                LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

@@ -17,7 +17,7 @@ import javax.inject.Inject
 class PostsListViewModel @Inject constructor() : BaseViewModel() {
 
     companion object {
-        const val DOWNLOAD_POST_LIMIT = 50
+        private const val DOWNLOAD_POST_LIMIT = 50
     }
 
     @Inject
